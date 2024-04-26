@@ -4,11 +4,11 @@
   align-items: center;
   list-style: none;
   padding-inline-start: 0;
-};
+}
 
 .StatItem {
   padding: 2px 10px;
-};
+}
 
 .StatsResultsList {
   display: flex;
@@ -16,13 +16,13 @@
   align-items: center;
   list-style: none;
   padding-inline-start: 0;
-};
+}
 
 .StatsResultsItem {
   padding: 2px 10px;
   color: blue;
-};
+}
 
 .StatValue {
   font-weight: bold;
-};
+}

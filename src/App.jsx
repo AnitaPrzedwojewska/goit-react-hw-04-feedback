@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { Section } from "./components/Section/Section";
 import { FeedbackOptions } from "./components/FeedbackOptions/FeedbackOptions";
-import { Statistics } from "./components/Statistics/TStatistics";
+import { Statistics } from "./components/Statistics/Statistics";
 import { Notification } from "./components/Notification/Notification";
 
 const INITIAL_FEEDBACK = {
@@ -25,15 +25,22 @@ function App() {
   // }
 
   const countTotalFeedback = () => {
-    return Object.values(feedback).reduce(
+    const resultTotalFeedback = Object.values(feedback).reduce(
       (total, votes) => (total += votes)
     );
+    console.log("resultTotalFeedback: ", resultTotalFeedback);
+    return resultTotalFeedback;
   }
 
   const countPositiveFeedbackPercentage = () => {
-    return countTotalFeedback()
+    const resultPositiveFeedbackPercentage = countTotalFeedback()
       ? Math.round((feedback.good / countTotalFeedback()) * 100)
       : "can't count";
+    console.log(
+      "resultPositiveFeedbackPercentage: ",
+      resultPositiveFeedbackPercentage
+    );
+    return resultPositiveFeedbackPercentage;
   }
 
   return (
@@ -44,14 +51,14 @@ function App() {
           onLeaveFeedback={handleFeedbackChange}
         />
       </Section>
-      {countTotalFeedback ? (
+      {countTotalFeedback() ? (
         <Section title='Statistic'>
           <Statistics
             good={feedback.good}
             neutral={feedback.neutral}
             bad={feedback.bad}
-            total={countTotalFeedback}
-            positivePercentage={countPositiveFeedbackPercentage}
+            total={countTotalFeedback()}
+            positivePercentage={countPositiveFeedbackPercentage()}
           />
         </Section>
       ) : (
